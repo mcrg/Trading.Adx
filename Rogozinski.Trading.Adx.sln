@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogozinski.Trading.Adx", "Rogozinski.Trading.Adx\Rogozinski.Trading.Adx.csproj", "{F65FE1A0-7B7F-46FA-BE24-35CFFFEECE90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogozinski.Trading.Adx.Tests", "Rogozinski.Trading.Adx.Tests\Rogozinski.Trading.Adx.Tests.csproj", "{5CE25A90-8127-4316-B1FF-8B51BB436894}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F65FE1A0-7B7F-46FA-BE24-35CFFFEECE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F65FE1A0-7B7F-46FA-BE24-35CFFFEECE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F65FE1A0-7B7F-46FA-BE24-35CFFFEECE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE25A90-8127-4316-B1FF-8B51BB436894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE25A90-8127-4316-B1FF-8B51BB436894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE25A90-8127-4316-B1FF-8B51BB436894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE25A90-8127-4316-B1FF-8B51BB436894}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
