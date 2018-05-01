@@ -53,9 +53,9 @@
             AssertMinusDm(6, actual);
         }
 
-        public static IEnumerable<object> InsideMovement()
+        public static IEnumerable<object[]> InsideMovement()
         {
-            return new List<object>()
+            return new List<object[]>()
             {
                 new object[]{ new PricePoint(2, 12, 2, 12), new PricePoint(4, 8, 4, 8) },
                 new object[]{ new PricePoint(2, 12, 2, 12), new PricePoint(2, 12, 2, 12) }
@@ -63,7 +63,7 @@
         }
 
         [Theory]
-        [MemberData("InsideMovement")]
+        [MemberData(nameof(InsideMovement))]
         public void CalculateShouldReturnZeroDmWhenMovementInside(IPricePoint previousPrice, IPricePoint currentPrice)
         {
             var sut = new DmCalculator();
@@ -73,9 +73,9 @@
             AssertZeroDm(actual);
         }
 
-        public static IEnumerable<object> LimitUp()
+        public static IEnumerable<object[]> LimitUp()
         {
-            return new List<object>()
+            return new List<object[]>()
             {
                 new object[]{ new PricePoint(2, 4, 2, 4), new PricePoint(8, 8, 8, 8), 4},
                 new object[]{ new PricePoint(2, 4, 2, 4), new PricePoint(8, 12, 8, 12), 8 }
@@ -83,7 +83,7 @@
         }
 
         [Theory]
-        [MemberData("LimitUp")]
+        [MemberData(nameof(LimitUp))]
         public void CalculateShouldReturnPositiveDmWhenLimitUp(IPricePoint previousPrice, IPricePoint currentPrice, double expected)
         {
             var sut = new DmCalculator();
@@ -93,9 +93,9 @@
             AssertPlusDm(expected, actual);
         }
 
-        public static IEnumerable<object> LimitDown()
+        public static IEnumerable<object[]> LimitDown()
         {
-            return new List<object>()
+            return new List<object[]>()
             {
                 new object[]{ new PricePoint(8, 8, 8, 8), new PricePoint(4, 4, 4, 4), 4},
                 new object[]{ new PricePoint(12, 12, 8, 8), new PricePoint(4, 4, 4, 4), 4},
@@ -104,7 +104,7 @@
         }
 
         [Theory]
-        [MemberData("LimitDown")]
+        [MemberData(nameof(LimitDown))]
         public void CalculateShouldReturnNegativeDmWhenLimitDown(IPricePoint previousPrice, IPricePoint currentPrice, double expected)
         {
             var sut = new DmCalculator();
