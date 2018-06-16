@@ -3,9 +3,14 @@
     using System;
     using System.Linq;
 
-    internal class TrueRangeCalculator
+    internal interface ITrueRangeCalculator
     {
-        internal double Calculate(IPricePoint previousPrice, IPricePoint currentPrice)
+        double Calculate(PricePoint previousPrice, PricePoint currentPrice);
+    }
+
+    internal class TrueRangeCalculator : ITrueRangeCalculator
+    {
+        public double Calculate(PricePoint previousPrice, PricePoint currentPrice)
         {
             var currentHighToLow = Math.Abs(currentPrice.High - currentPrice.Low);
             var currentHighToPreviousClose = Math.Abs(currentPrice.High - previousPrice.Close);

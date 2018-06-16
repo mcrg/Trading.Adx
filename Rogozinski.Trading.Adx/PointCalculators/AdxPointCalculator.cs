@@ -7,12 +7,12 @@ namespace Rogozinski.Trading.Adx
 
     internal interface IAdxPointCalculator
     {
-        IEnumerable<AdxPointHistory> Calculate(AdxPointHistory previousAdxPoint, IList<IPricePoint> pricePoints);
+        IEnumerable<AdxPointHistory> Calculate(AdxPointHistory previousAdxPoint, IList<PricePoint> pricePoints);
     }
 
     internal class AdxPointCalculator : IAdxPointCalculator
     {
-        public IEnumerable<AdxPointHistory> Calculate(AdxPointHistory previousAdxPoint, IList<IPricePoint> pricePoints)
+        public IEnumerable<AdxPointHistory> Calculate(AdxPointHistory previousAdxPoint, IList<PricePoint> pricePoints)
         {
             foreach (var pricePoint in pricePoints)
             {

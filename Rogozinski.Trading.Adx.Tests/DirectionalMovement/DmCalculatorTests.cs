@@ -5,10 +5,16 @@
 
     public class DmCalculatorTests
     {
+        private DmCalculator sut;
+
+        public DmCalculatorTests()
+        {
+            sut = new DmCalculator();
+        }
+
         [Fact]
         public void CalculateShouldReturnPlusDmWhenMovementUp()
         {
-            var sut = new DmCalculator();
             var previousPrice = new PricePoint(2, 8, 2, 8);
             var currentPrice = new PricePoint(4, 12, 4, 12);
 
@@ -20,7 +26,6 @@
         [Fact]
         public void CalculateShouldReturnMinusDmWhenMovementDown()
         {
-            var sut = new DmCalculator();
             var previousPrice = new PricePoint(12, 12, 6, 6);
             var currentPrice = new PricePoint(8, 8, 2, 2);
 
@@ -32,7 +37,6 @@
         [Fact]
         public void CalculateShouldReturnPlusDmWhenMovementOutsideUp()
         {
-            var sut = new DmCalculator();
             var previousPrice = new PricePoint(4, 6, 4, 6);
             var currentPrice = new PricePoint(2, 12, 2, 12);
 
@@ -44,7 +48,6 @@
         [Fact]
         public void CalculateShouldReturnMinusDmWhenMovementOutsideUp()
         {
-            var sut = new DmCalculator();
             var previousPrice = new PricePoint(10, 10, 8, 8);
             var currentPrice = new PricePoint(12, 12, 2, 2);
 
@@ -64,10 +67,8 @@
 
         [Theory]
         [MemberData(nameof(InsideMovement))]
-        public void CalculateShouldReturnZeroDmWhenMovementInside(IPricePoint previousPrice, IPricePoint currentPrice)
+        public void CalculateShouldReturnZeroDmWhenMovementInside(PricePoint previousPrice, PricePoint currentPrice)
         {
-            var sut = new DmCalculator();
-
             var actual = sut.Calculate(previousPrice, currentPrice);
 
             AssertZeroDm(actual);
@@ -84,10 +85,8 @@
 
         [Theory]
         [MemberData(nameof(LimitUp))]
-        public void CalculateShouldReturnPositiveDmWhenLimitUp(IPricePoint previousPrice, IPricePoint currentPrice, double expected)
+        public void CalculateShouldReturnPositiveDmWhenLimitUp(PricePoint previousPrice, PricePoint currentPrice, double expected)
         {
-            var sut = new DmCalculator();
-
             var actual = sut.Calculate(previousPrice, currentPrice);
 
             AssertPlusDm(expected, actual);
@@ -105,10 +104,8 @@
 
         [Theory]
         [MemberData(nameof(LimitDown))]
-        public void CalculateShouldReturnNegativeDmWhenLimitDown(IPricePoint previousPrice, IPricePoint currentPrice, double expected)
+        public void CalculateShouldReturnNegativeDmWhenLimitDown(PricePoint previousPrice, PricePoint currentPrice, double expected)
         {
-            var sut = new DmCalculator();
-
             var actual = sut.Calculate(previousPrice, currentPrice);
 
             AssertMinusDm(expected, actual);

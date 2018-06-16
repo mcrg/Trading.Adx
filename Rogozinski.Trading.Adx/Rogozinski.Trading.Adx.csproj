@@ -11,8 +11,5 @@
     <Folder Include="TrueRangeCalculator\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="DirectionalMovement\IDmCalculator.cs" />
-    <Compile Remove="DirectionalMovement\IDmCalculator.cs" />
-  </ItemGroup>
+  
 </Project>

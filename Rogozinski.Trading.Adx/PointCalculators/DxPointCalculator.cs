@@ -4,6 +4,6 @@
 
     internal interface IDxPointCalculator
     {
-        AdxPointHistory Calculate(DmPointResult dmResult, IList<IPricePoint> pricePoints);
+        AdxPointHistory Calculate(DmPointResult dmResult, IList<PricePoint> pricePoints);
     }
 }

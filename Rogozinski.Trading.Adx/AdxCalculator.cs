@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Rogozinski.Trading.Adx.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 namespace Rogozinski.Trading.Adx
 {
     using System;
@@ -7,9 +8,9 @@ namespace Rogozinski.Trading.Adx
 
     public interface IAdxCalculator
     {
-        IEnumerable<AdxPoint> Calculate(IList<IPricePoint> pricePoints);
+        IEnumerable<AdxPoint> Calculate(IList<PricePoint> pricePoints);
 
-        AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, IPricePoint currentPricePoint);
+        AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, PricePoint currentPricePoint);
     }
 
     internal class AdxCalculator : IAdxCalculator
@@ -26,14 +27,10 @@ namespace Rogozinski.Trading.Adx
             this.adxPointCalculator = adxCalculator;
         }
 
-        public IEnumerable<AdxPoint> Calculate(IList<IPricePoint> pricePoints)
+        public IEnumerable<AdxPoint> Calculate(IList<PricePoint> pricePoints)
         {
-            if (pricePoints.Count <= Period * 2)
-            {
-                throw new ArgumentException($"Not enough price points, requires at least {Period * 2 + 1}");
-            }
-
-
+            Check.EnoughElements(pricePoints, Period * 2 + 1);
+            
             var dmItem = dmPointCalculator.Calculate(pricePoints.Slice(Period - 1));
             var dxItem = dxPointCalculator.Calculate(dmItem, pricePoints.Slice(Period, Period * 2 - 1));
 
@@ -43,7 +40,7 @@ namespace Rogozinski.Trading.Adx
             return new List<AdxPoint>();
         }
 
-        public AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, IPricePoint currentPricePoint)
+        public AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, PricePoint currentPricePoint)
         {
             throw new NotImplementedException();
         }

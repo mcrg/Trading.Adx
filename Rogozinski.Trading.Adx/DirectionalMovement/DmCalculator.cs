@@ -2,12 +2,12 @@
 {
     internal interface IDmCalculator
     {
-        DmResult Calculate(IPricePoint previousPrice, IPricePoint currentPrice);
+        DmResult Calculate(PricePoint previousPrice, PricePoint currentPrice);
     }
 
     internal class DmCalculator : IDmCalculator
     {
-        public DmResult Calculate(IPricePoint previousPrice, IPricePoint currentPrice)
+        public DmResult Calculate(PricePoint previousPrice, PricePoint currentPrice)
         {
             var highDiff = currentPrice.High - previousPrice.High;
             var lowDiff = previousPrice.Low - currentPrice.Low;

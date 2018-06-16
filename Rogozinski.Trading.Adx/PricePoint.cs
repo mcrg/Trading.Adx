@@ -1,19 +1,15 @@
 ﻿namespace Rogozinski.Trading.Adx
 {
-    public interface IPricePoint
-    {
-        double Open { get; }
-
-        double High { get; }
-
-        double Low { get; }
-
-        double Close { get; }
-    }
-
-    public class PricePoint : IPricePoint
+    public class PricePoint
     {
         public PricePoint() { }
+
+        public PricePoint(double high, double low, double close)
+        {
+            High = high;
+            Low = low;
+            Close = close;
+        }
 
         public PricePoint(double open, double high, double low, double close)
         {
