@@ -1,11 +1,11 @@
 ﻿namespace Rogozinski.Trading.Adx
 {
-    public interface IDmCalculator
+    internal interface IDmCalculator
     {
         DmResult Calculate(IPricePoint previousPrice, IPricePoint currentPrice);
     }
 
-    public class DmCalculator : IDmCalculator
+    internal class DmCalculator : IDmCalculator
     {
         public DmResult Calculate(IPricePoint previousPrice, IPricePoint currentPrice)
         {
@@ -23,19 +23,6 @@
             }
 
             return new DmResult(0, lowDiff);
-        }
-    }
-
-    public class DmResult
-    {
-        public double PlusDm { get; }
-
-        public double MinusDm { get; }
-
-        public DmResult(double plusDm, double minusDm)
-        {
-            PlusDm = plusDm;
-            MinusDm = minusDm;
         }
     }
 }

@@ -4,10 +4,16 @@
 
     public class TrueRangeCalculatorTests
     {
+        private TrueRangeCalculator sut;
+
+        public TrueRangeCalculatorTests()
+        {
+            sut = new TrueRangeCalculator();
+        }
+
         [Fact]
         public void CalculateShouldReturnDistanceBetweenCurrentHighAndLow()
         {
-            var sut = new TrueRangeCalculator();
             var previousPrice = new PricePoint(4, 8, 2, 6);
             var currentPrice = new PricePoint(6, 12, 4, 10);
 
@@ -19,7 +25,6 @@
         [Fact]
         public void CalculateShouldReturnDistanceBetweenCurrentHighAndPreviousClose()
         {
-            var sut = new TrueRangeCalculator();
             var previousPrice = new PricePoint(2, 6, 0, 4);
             var currentPrice = new PricePoint(10, 16, 12, 14);
 
@@ -31,7 +36,6 @@
         [Fact]
         public void CalculateShouldReturnDistanceBetweenCurrentLowAndPreviousClose()
         {
-            var sut = new TrueRangeCalculator();
             var previousPrice = new PricePoint(14, 16, 10, 12);
             var currentPrice = new PricePoint(6, 8, 2, 4);
 
