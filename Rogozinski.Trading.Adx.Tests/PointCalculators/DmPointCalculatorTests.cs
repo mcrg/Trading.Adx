@@ -1,4 +1,4 @@
-﻿namespace Rogozinski.Trading.Adx.Tests.PointCalculators
+﻿namespace Rogozinski.Trading.Adx.Tests
 {
     using System.Collections.Generic;
     using System;
@@ -28,19 +28,19 @@
                     new List<PricePoint>()
                     {
                         new PricePoint(274, 272, 272.75),
-                            new PricePoint(273.25, 270.25, 270),
-                            new PricePoint(272, 269.75, 270),
-                            new PricePoint(270.75, 268, 269.25),
-                            new PricePoint(270, 269, 269.75),
-                            new PricePoint(270.5, 268, 270),
-                            new PricePoint(268.5, 266.5, 266.5),
-                            new PricePoint(265.5, 263, 263.25),
-                            new PricePoint(262.5, 259, 260.25),
-                            new PricePoint(263.5, 260, 263),
-                            new PricePoint(269.5, 263, 266.5),
-                            new PricePoint(267.25, 265, 267),
-                            new PricePoint(267.5, 265.5, 265.75),
-                            new PricePoint(269.75, 266, 268.5)
+                        new PricePoint(273.25, 270.25, 270.75),
+                        new PricePoint(272, 269.75, 270),
+                        new PricePoint(270.75, 268, 269.25),
+                        new PricePoint(270, 269, 269.75),
+                        new PricePoint(270.5, 268, 270),
+                        new PricePoint(268.5, 266.5, 266.5),
+                        new PricePoint(265.5, 263, 263.25),
+                        new PricePoint(262.5, 259, 260.25),
+                        new PricePoint(263.5, 260, 263),
+                        new PricePoint(269.5, 263, 266.5),
+                        new PricePoint(267.25, 265, 267),
+                        new PricePoint(267.5, 265.5, 265.75),
+                        new PricePoint(269.75, 266, 268.5)
                     }
                 }
             };

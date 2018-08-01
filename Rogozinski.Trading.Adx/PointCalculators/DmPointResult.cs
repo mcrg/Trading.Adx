@@ -1,6 +1,6 @@
 ﻿namespace Rogozinski.Trading.Adx
 {
-    internal class DmPointResult
+    public class DmPointResult
     {
         public double Tr14 { get; }
         public DmResult Dm14 { get; }

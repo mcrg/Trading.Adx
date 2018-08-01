@@ -1,10 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("Rogozinski.Trading.Adx.Tests")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+[assembly : InternalsVisibleTo("Rogozinski.Trading.Adx.Tests")]
+[assembly : InternalsVisibleTo("DynamicProxyGenAssembly2")]
 namespace Rogozinski.Trading.Adx
 {
-    using System;
     using System.Collections.Generic;
+    using System;
 
     public interface IAdxCalculator
     {
@@ -30,9 +30,9 @@ namespace Rogozinski.Trading.Adx
         public IEnumerable<AdxPoint> Calculate(IList<PricePoint> pricePoints)
         {
             Check.EnoughElements(pricePoints, Period * 2 + 1);
-            
+
             var dmItem = dmPointCalculator.Calculate(pricePoints.Slice(Period - 1));
-            var dxItem = dxPointCalculator.Calculate(dmItem, pricePoints.Slice(Period, Period * 2 - 1));
+            var dxItem = dxPointCalculator.Calculate(dmItem, pricePoints.Slice(Period - 1, Period * 2 - 1));
 
             var restPricePoints = pricePoints.Slice(Period * 2);
             var adxPoints = adxPointCalculator.Calculate(dxItem, restPricePoints);
