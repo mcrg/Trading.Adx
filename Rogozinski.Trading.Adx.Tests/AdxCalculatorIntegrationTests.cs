@@ -78,24 +78,6 @@ namespace Rogozinski.Trading.Adx.Tests
         }
 
         [Theory]
-        [MemberData(nameof(PricePoints))]
-        public void CalculateFirstAdx(List<PricePoint> pricePoints)
-        {
-            var actual = sut.Calculate(pricePoints).ToList();
-
-            Assert.Equal(15, actual.Count);
-
-            AssertHelper.AdxPointsEqual(new AdxPoint()
-            {
-                Adx = 16,
-                    Tr14 = 57.05,
-                    Dm14 = new DmResult(12.28, 21.75),
-                    Di14 = new DiResult(22, 38),
-                    Price = pricePoints[pricePoints.Count - actual.Count]
-            }, actual[0]);
-        }
-
-        [Theory]
         [InlineData(0, 16, 57.05, 12.28, 21.75, 22, 38)]
         [InlineData(1, 17, 57.47, 11.40, 22.70, 20, 39)]
         [InlineData(2, 18, 59.36, 12.09, 21.08, 20, 36)]
@@ -112,7 +94,7 @@ namespace Rogozinski.Trading.Adx.Tests
         [InlineData(13, 28, 58.96, 9.31, 26.05, 16, 44)]
         [InlineData(14, 29, 56.25, 8.64, 24.19, 15, 43)]
 
-        public void CalculateRestOfAdxBasedOnFirst(int positionInResults, double adx, double tr14, double plusDm14, double minusDm14, double plusDi14, double minusDi14)
+        public void Calculate(int positionInResults, double adx, double tr14, double plusDm14, double minusDm14, double plusDi14, double minusDi14)
         {
             var pricePoints = GetPricePoints();
             var actual = sut.Calculate(pricePoints).ToList();
