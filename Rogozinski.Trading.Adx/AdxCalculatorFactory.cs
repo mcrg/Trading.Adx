@@ -4,7 +4,11 @@
     {
         public IAdxCalculator Create()
         {
-            throw new System.NotImplementedException();
+            var trueRangeCalculator = new TrueRangeCalculator();
+            var dmCalculator = new DmCalculator();
+            return new AdxCalculator(
+                new DmPointCalculator(trueRangeCalculator, dmCalculator),
+                new AdxPointCalculator(trueRangeCalculator, new AccumulationCalculator(), dmCalculator));
         }
     }
 }

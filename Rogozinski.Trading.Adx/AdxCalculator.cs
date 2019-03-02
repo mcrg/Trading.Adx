@@ -10,20 +10,18 @@ namespace Rogozinski.Trading.Adx
     {
         IEnumerable<AdxPoint> Calculate(IList<PricePoint> pricePoints);
 
-        AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, PricePoint currentPricePoint);
+        AdxPoint Calculate(AdxPoint prevAdx, PricePoint currentPrice);
     }
 
     internal class AdxCalculator : IAdxCalculator
     {
         const int Period = 14;
         private readonly IDmPointCalculator dmPointCalculator;
-        private readonly IDxPointCalculator dxPointCalculator;
         private readonly IAdxPointCalculator adxPointCalculator;
 
-        public AdxCalculator(IDmPointCalculator dmCalculator, IDxPointCalculator dxCalculator, IAdxPointCalculator adxCalculator)
+        public AdxCalculator(IDmPointCalculator dmCalculator, IAdxPointCalculator adxCalculator)
         {
             this.dmPointCalculator = dmCalculator;
-            this.dxPointCalculator = dxCalculator;
             this.adxPointCalculator = adxCalculator;
         }
 
@@ -31,18 +29,25 @@ namespace Rogozinski.Trading.Adx
         {
             Check.EnoughElements(pricePoints, Period * 2 + 1);
 
-            var dmItem = dmPointCalculator.Calculate(pricePoints.Slice(Period - 1));
-            var dxItem = dxPointCalculator.Calculate(dmItem, pricePoints.Slice(Period - 1, Period * 2 - 1));
+            var dmItem = dmPointCalculator.Calculate(pricePoints.Slice(0, Period - 1));
+            var adxPoint = adxPointCalculator.Calculate(dmItem, pricePoints.Slice(Period - 1, Period * 2 - 1));
 
             var restPricePoints = pricePoints.Slice(Period * 2);
-            var adxPoints = adxPointCalculator.Calculate(dxItem, restPricePoints);
 
-            return new List<AdxPoint>();
+            var adxPoints = new List<AdxPoint>();
+            adxPoints.Add(adxPoint);
+            foreach (var price in restPricePoints)
+            {
+                adxPoint = adxPointCalculator.Calculate(adxPoint, price);
+                adxPoints.Add(adxPoint);
+            }
+
+            return adxPoints;
         }
 
-        public AdxPoint Calculate(AdxPointHistory previousAdxPointHistory, PricePoint currentPricePoint)
+        public AdxPoint Calculate(AdxPoint prevAdx, PricePoint currentPrice)
         {
-            throw new NotImplementedException();
+            return adxPointCalculator.Calculate(prevAdx, currentPrice);
         }
     }
 }

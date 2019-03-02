@@ -1,10 +1,10 @@
 namespace Rogozinski.Trading.Adx
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
 
-    public static class Check
+    internal static class Check
     {
         public static void EnoughElements<T>(IList<T> collection, int minSize)
         {
